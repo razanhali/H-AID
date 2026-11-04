@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Humanitarian aid, Beneficiary management, Web Applications, Aid Distribution">
+    <title>H-AID | My Portal</title>
+    <link rel="stylesheet" href="css/all_min.css">
+    <link rel="stylesheet" href="css/user.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div>
+            <h2 id="welcomeText">Welcome</h2>
+            <p>Track your aid package, queue number, and pickup details.</p>
+        </div>
+        <div class="header-logo">
+            <img src="images/logo.png" alt="H-AID Logo">
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <i class="fa-solid fa-box-open"></i>
+            <h4>Aid Package</h4>
+            <p id="packageType">—</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-calendar-days"></i>
+            <h4>Pickup Date</h4>
+            <p id="pickupDate">—</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-ticket"></i>
+            <h4>Queue Number</h4>
+            <p id="queueNumber">—</p>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="box">
+            <h3>Beneficiary Information</h3>
+            <p><b>Full Name:</b> <span id="fullName"></span></p>
+            <p><b>National ID:</b> <span id="nationalId"></span></p>
+            <p><b>Family Members:</b> <span id="family"></span></p>
+            <p><b>Priority:</b> <span id="priority"></span></p>
+            <p><b>Status:</b> <span id="userStatus"></span></p>
+            <p><b>Pickup Location:</b> <span id="location">To be announced</span></p>
+            <p><b>Package Content:</b> <span id="content">Food + Hygiene Kit</span></p>
+        </div>
+
+        <div class="box note">
+            <h3>Important Note</h3>
+            <p>Please bring your National ID when you come to receive your aid package.</p>
+            <p style="margin-top:12px;font-size:13px;color:#666;">
+                <i class="fa-solid fa-circle-info" style="color:#2563eb;"></i>
+                Your Beneficiary ID serves as your login password.
+            </p>
+            <button onclick="downloadData()">
+                <i class="fa-solid fa-download"></i> Download Details
+            </button>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="js/user.js"></script>
+</body>
+</html>

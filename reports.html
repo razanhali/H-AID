@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>if(!sessionStorage.getItem("currentUser")){window.location.replace("index.html");}</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Humanitarian aid, Beneficiary management, Web Applications, Aid Distribution">
+    <title>H-AID | Reports</title>
+    <link rel="stylesheet" href="css/all_min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/report.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="images/logo.png" alt="H-AID Logo">
+            <div class="logo-text">
+                <h1>H-AID</h1>
+                <p>Humanitarian Aid<br>Distribution System</p>
+            </div>
+        </div>
+        <div class="navbar">
+            <nav class="menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="resources.html" class="nav-link">
+                    <i class="fa-solid fa-box-archive"></i> Resources
+                </a>
+                <a href="beneficiaries.html" class="nav-link">
+                    <i class="fa-solid fa-users"></i> Beneficiaries
+                </a>
+                <a href="distribution.html" class="nav-link">
+                    <i class="fa-solid fa-truck"></i> Distribution
+                </a>
+                <a href="reports.html" class="nav-link active">
+                    <i class="fa-solid fa-chart-column"></i> Reports
+                </a>
+                <a href="setting.html" class="nav-link">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+        </div>
+        <div class="logout" onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Log Out</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Reports</h1>
+            <p>Generate and manage system reports.</p>
+        </div>
+
+        <!-- Stats - live from sessionStorage -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon blue"><i class="fa-solid fa-box-open"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Resources</h4>
+                        <h2 id="rpt-resources">0</h2>
+                        <p>All registered items</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon cyan"><i class="fa-solid fa-user-group"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Beneficiaries</h4>
+                        <h2 id="rpt-beneficiaries">0</h2>
+                        <p>Registered individuals</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon purple"><i class="fa-solid fa-truck"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Distribution</h4>
+                        <h2 id="rpt-distributions">0</h2>
+                        <p>Completed distributions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon orange"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <div class="stat-info">
+                        <h4>Pending Distribution</h4>
+                        <h2 id="rpt-pending">0</h2>
+                        <p>Not yet completed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Report -->
+        <div class="content-card">
+            <h2 style="font-size:17px;color:#082b63;margin-bottom:18px;">
+                <i class="fa-solid fa-chart-simple" style="margin-right:8px;"></i>Generate New Report
+            </h2>
+            <div class="report-filter-row">
+                <div class="filter-item">
+                    <label>Report Type</label>
+                    <select id="selReportType">
+                        <option value="">Select report type</option>
+                        <option value="monthly">Monthly Report</option>
+                        <option value="resource">Resource Report</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>Date From</label>
+                    <input type="date" id="txtDateFrom">
+                </div>
+                <div class="filter-item">
+                    <label>Date To</label>
+                    <input type="date" id="txtDateTo">
+                </div>
+                <button class="btn-primary" onclick="addReport()">
+                    <i class="fa-solid fa-chart-simple"></i> Generate Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Reports Table -->
+        <div class="content-card">
+            <div class="content-card-header">
+                <h2>Recent Reports</h2>
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="data-table" id="reports-table">
+                    <thead>
+                        <tr>
+                            <th>Report Name</th>
+                            <th>Type</th>
+                            <th>Date Generated</th>
+                            <th>Generated By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/report.js"></script>
+</body>
+</html>

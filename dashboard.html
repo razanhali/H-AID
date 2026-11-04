@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>if(!sessionStorage.getItem("currentUser")){window.location.replace("index.html");}</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Humanitarian aid, Beneficiary management, Web Applications, Aid Distribution">
+    <title>H-AID | Dashboard</title>
+    <link rel="stylesheet" href="css/all_min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="images/logo.png" alt="H-AID Logo">
+            <div class="logo-text">
+                <h1>H-AID</h1>
+                <p>Humanitarian Aid<br>Distribution System</p>
+            </div>
+        </div>
+        <div class="navbar">
+            <nav class="menu">
+                <a href="dashboard.html" class="nav-link active">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="resources.html" class="nav-link">
+                    <i class="fa-solid fa-box-archive"></i> Resources
+                </a>
+                <a href="beneficiaries.html" class="nav-link">
+                    <i class="fa-solid fa-users"></i> Beneficiaries
+                </a>
+                <a href="distribution.html" class="nav-link">
+                    <i class="fa-solid fa-truck"></i> Distribution
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fa-solid fa-chart-column"></i> Reports
+                </a>
+                <a href="setting.html" class="nav-link">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+        </div>
+        <div class="logout" onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Log Out</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Dashboard</h1>
+            <p>Overview of humanitarian aid distribution activities.</p>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon blue"><i class="fa-solid fa-box-open"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Resources</h4>
+                        <h2 id="totalResources">0</h2>
+                        <p>All registered items</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="resources.html" class="blue">View Details</a>
+                    <i class="fa-solid fa-chevron-right blue"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon cyan"><i class="fa-solid fa-user-group"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Beneficiaries</h4>
+                        <h2 id="totalBeneficiaries">0</h2>
+                        <p>Registered individuals</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="beneficiaries.html" class="cyan">View Details</a>
+                    <i class="fa-solid fa-chevron-right cyan"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon purple"><i class="fa-solid fa-truck"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Distribution</h4>
+                        <h2 id="totalDistributions">0</h2>
+                        <p>Completed distributions</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="distribution.html" class="purple">View Details</a>
+                    <i class="fa-solid fa-chevron-right purple"></i>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon orange"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <div class="stat-info">
+                        <h4>Pending Distribution</h4>
+                        <h2 id="pendingDistributions">0</h2>
+                        <p>Not yet completed</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="distribution.html" class="orange">View Details</a>
+                    <i class="fa-solid fa-chevron-right orange"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-sections">
+            <!-- Alerts -->
+            <div class="content-card">
+                <div class="content-card-header">
+                    <h2><i class="fa-regular fa-bell" style="color:#082b63;margin-right:8px;"></i>Alerts</h2>
+                    <a href="#" class="view-all-link">View All <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+                <div class="alert-item low-stock">
+                    <div class="alert-left">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <div>
+                            <h4>Low Stock Items</h4>
+                            <p>Some resources are running low and need attention.</p>
+                        </div>
+                    </div>
+                    <span class="alert-count red-count">3</span>
+                </div>
+                <div class="alert-item pending-alert">
+                    <div class="alert-left">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                        <div>
+                            <h4>Pending Distribution</h4>
+                            <p>Distributions are waiting for processing.</p>
+                        </div>
+                    </div>
+                    <span class="alert-count orange-count">5</span>
+                </div>
+                <div class="alert-item upcoming-alert">
+                    <div class="alert-left">
+                        <i class="fa-solid fa-calendar"></i>
+                        <div>
+                            <h4>Upcoming Distribution</h4>
+                            <p>Distributions scheduled for tomorrow.</p>
+                        </div>
+                    </div>
+                    <span class="alert-count blue-count">2</span>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="content-card">
+                <div class="content-card-header">
+                    <h2><i class="fa-solid fa-clock-rotate-left" style="color:#082b63;margin-right:8px;"></i>Recent Activities</h2>
+                    <a href="#" class="view-all-link">View All <i class="fa-solid fa-angle-right"></i></a>
+                </div>
+                <div class="activity-item resource-act">
+                    <div class="activity-left">
+                        <div class="activity-icon blue-act"><i class="fa-solid fa-box-open"></i></div>
+                        <div>
+                            <h4>New Resource Added</h4>
+                            <p>Food package added to inventory</p>
+                        </div>
+                    </div>
+                    <span class="activity-time">May 21, 2026 · 2:45 PM</span>
+                </div>
+                <div class="activity-item beneficiary-act">
+                    <div class="activity-left">
+                        <div class="activity-icon cyan-act"><i class="fa-solid fa-user-group"></i></div>
+                        <div>
+                            <h4>New Beneficiary Registered</h4>
+                            <p>A new family has been added</p>
+                        </div>
+                    </div>
+                    <span class="activity-time">May 18, 2026 · 4:00 PM</span>
+                </div>
+                <div class="activity-item distribution-act">
+                    <div class="activity-left">
+                        <div class="activity-icon green-act"><i class="fa-solid fa-truck"></i></div>
+                        <div>
+                            <h4>Distribution Completed</h4>
+                            <p>Supplies delivered successfully.</p>
+                        </div>
+                    </div>
+                    <span class="activity-time">Apr 30, 2026 · 1:10 PM</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

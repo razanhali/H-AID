@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>if(!sessionStorage.getItem("currentUser")){window.location.replace("index.html");}</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Humanitarian aid, Beneficiary management, Web Applications, Aid Distribution">   
+    <title>H-AID | Settings</title>
+    <link rel="stylesheet" href="css/all_min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/setting.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="images/logo.png" alt="H-AID Logo">
+            <div class="logo-text">
+                <h1>H-AID</h1>
+                <p>Humanitarian Aid<br>Distribution System</p>
+            </div>
+        </div>
+        <div class="navbar">
+            <nav class="menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="resources.html" class="nav-link">
+                    <i class="fa-solid fa-box-archive"></i> Resources
+                </a>
+                <a href="beneficiaries.html" class="nav-link">
+                    <i class="fa-solid fa-users"></i> Beneficiaries
+                </a>
+                <a href="distribution.html" class="nav-link">
+                    <i class="fa-solid fa-truck"></i> Distribution
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fa-solid fa-chart-column"></i> Reports
+                </a>
+                <a href="setting.html" class="nav-link active">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+        </div>
+        <div class="logout" onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Log Out</span>
+        </div>
+    </aside>
+
+    <main class="main-content setting-main">
+        <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+                <h1>Settings</h1>
+                <p>Project information and system overview</p>
+            </div>
+            <div class="date-box">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span id="currentDate"></span>
+            </div>
+        </div>
+
+        <div class="setting-card hero-card">
+            <div class="setting-circle blue-c">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+                <h2>Graduation Project Prototype</h2>
+                <p>This project is a front-end prototype for managing humanitarian aid distribution.</p>
+            </div>
+        </div>
+
+        <div class="setting-two-col">
+            <div class="setting-card">
+                <div class="setting-circle teal-c">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <div>
+                    <h2>Project Scope</h2>
+                    <ul class="check-list">
+                        <li><i class="fa-regular fa-circle-check"></i> Prototype using Dummy Data</li>
+                        <li><i class="fa-regular fa-circle-check"></i> No Database</li>
+                        <li><i class="fa-regular fa-circle-check"></i> No Backend API</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="setting-card">
+                <div class="setting-circle purple-c">
+                    <i class="fa-solid fa-user-group"></i>
+                </div>
+                <div>
+                    <h2>System Users</h2>
+                    <ul class="dot-list">
+                        <li>Staff / Admin</li>
+                        <li>Beneficiaries</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-card tech-card">
+            <div class="setting-circle yellow-c">
+                <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+                <h2>Technologies Used</h2>
+                <div class="badges">
+                    <span class="badge-html">HTML</span>
+                    <span class="badge-css">CSS</span>
+                    <span class="badge-js">JavaScript</span>
+                    <span class="badge-ls">LocalStorage</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-card features-card">
+            <div class="setting-circle green-c">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <div>
+                <h2>Main Features</h2>
+                <div class="features-grid">
+                    <p><i class="fa-regular fa-circle-check"></i> Manage beneficiaries</p>
+                    <p><i class="fa-regular fa-circle-check"></i> View reports</p>
+                    <p><i class="fa-regular fa-circle-check"></i> Manage resources</p>
+                    <p><i class="fa-regular fa-circle-check"></i> Beneficiary portal</p>
+                    <p><i class="fa-regular fa-circle-check"></i> Manage aid distribution</p>
+                </div>
+            </div>
+            <i class="fa-regular fa-clipboard bg-icon"></i>
+        </div>
+
+        <div class="setting-card goal-card">
+            <div class="setting-circle red-c">
+                <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <div>
+                <h2>Project Goal</h2>
+                <p>To organize aid distribution in a fair, transparent, and trackable way.</p>
+            </div>
+            <i class="fa-solid fa-hands-holding-heart bg-heart"></i>
+        </div>
+
+        <footer class="setting-footer">&copy; 2026 H-AID Distribution System. All rights reserved.</footer>
+    </main>
+</div>
+
+<script src="js/common.js"></script>
+<script>
+    const d = new Date();
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    document.getElementById("currentDate").textContent = d.toLocaleDateString("en-US", options);
+</script>
+</body>
+</html>

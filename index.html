@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Humanitarian aid, Beneficiary management, Web Applications, Aid Distribution">
+    <title>H-AID | Login</title>
+    <link rel="stylesheet" href="css/all_min.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+<div class="login-container">
+    <!-- Left Side -->
+    <div class="left-side">
+        <div class="brand-wrapper">
+            <div class="logo-container-centered">
+                <img src="images/logo.png" alt="H-AID Logo" class="logo">
+            </div>
+            <h1>H-AID</h1>
+            <p class="system-title">Humanitarian Aid Distribution System</p>
+            <div class="brand-divider"></div>
+            <p class="tagline">Delivering help with care,<br>transparency and efficiency.</p>
+        </div>
+        <div class="illustration-container">
+            <img src="images/login-illustration.png" alt="Aid Illustration" class="illustration">
+        </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right-side">
+        <div class="login-box">
+            <h2>Log In</h2>
+            <p class="subtitle">Choose your role to continue.</p>
+
+            <div id="roleChoice" class="role-choice">
+                <div class="role-card" id="beneficiaryCard" onclick="selectRole('beneficiary')">
+                    <i class="fa-regular fa-user role-icon"></i>
+                    <span>Beneficiary</span>
+                </div>
+                <div class="role-card" id="staffCard" onclick="selectRole('staff')">
+                    <i class="fa-solid fa-user-gear role-icon"></i>
+                    <span>Staff</span>
+                </div>
+            </div>
+
+            <div class="or-separator" id="orSeparator" style="display:none;">
+                <span>or</span>
+            </div>
+
+            <!-- Beneficiary Fields -->
+            <div id="beneficiaryFields" class="form-fields">
+                <div class="input-with-icon">
+                    <i class="fa-regular fa-user field-icon"></i>
+                    <input type="text" id="beneficiaryName" placeholder="Full Name">
+                </div>
+                <div class="input-with-icon">
+                    <i class="fa-regular fa-id-card field-icon"></i>
+                    <input type="text" id="beneficiaryNationalId" placeholder="National ID (9 digits)" maxlength="9">
+                </div>
+                <div class="login-hint">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Your password is your Beneficiary ID (e.g. B-001)
+                </div>
+            </div>
+
+            <!-- Staff Fields -->
+            <div id="staffFields" class="form-fields">
+                <div class="input-with-icon">
+                    <i class="fa-regular fa-user field-icon"></i>
+                    <input type="text" id="staffName" placeholder="Staff Name">
+                </div>
+                <div class="input-with-icon">
+                    <i class="fa-solid fa-lock field-icon"></i>
+                    <input type="password" id="staffPassword" placeholder="Password">
+                </div>
+                <div class="login-hint">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Demo: Name = <strong>staff</strong> | Password = <strong>staff123</strong>
+                </div>
+            </div>
+
+            <button id="loginBtn" onclick="login()" style="display:none;">Log In</button>
+
+            <div class="secure-footer">
+                <i class="fa-solid fa-shield-halved secure-icon"></i>
+                <span>Your information is secure and protected.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/login.js"></script>
+</body>
+</html>

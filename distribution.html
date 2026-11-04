@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>if(!sessionStorage.getItem("currentUser")){window.location.replace("index.html");}</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Humanitarian aid, Beneficiary management, Web Applications, Aid Distribution">
+    <title>H-AID | Distribution</title>
+    <link rel="stylesheet" href="css/all_min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/distribution.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="images/logo.png" alt="H-AID Logo">
+            <div class="logo-text">
+                <h1>H-AID</h1>
+                <p>Humanitarian Aid<br>Distribution System</p>
+            </div>
+        </div>
+        <div class="navbar">
+            <nav class="menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="resources.html" class="nav-link">
+                    <i class="fa-solid fa-box-archive"></i> Resources
+                </a>
+                <a href="beneficiaries.html" class="nav-link">
+                    <i class="fa-solid fa-users"></i> Beneficiaries
+                </a>
+                <a href="distribution.html" class="nav-link active">
+                    <i class="fa-solid fa-truck"></i> Distribution
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fa-solid fa-chart-column"></i> Reports
+                </a>
+                <a href="setting.html" class="nav-link">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+        </div>
+        <div class="logout" onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Log Out</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Distribution</h1>
+            <p>Manage aid distribution to beneficiaries.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon blue"><i class="fa-solid fa-truck"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Distribution</h4>
+                        <h2 id="totalDistributions">0</h2>
+                        <p>All time distributions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="stat-info">
+                        <h4>Completed</h4>
+                        <h2 id="completed">0</h2>
+                        <p>Completed successfully</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon orange"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h4>Pending</h4>
+                        <h2 id="pending">0</h2>
+                        <p>Not yet completed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon purple"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Beneficiaries</h4>
+                        <h2 id="beneficiaries">0</h2>
+                        <p>Unique beneficiaries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Distribution Form -->
+        <div class="content-card">
+            <h2 style="color:#2563eb;margin-bottom:18px;font-size:17px;">
+                <i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i>New Distribution
+            </h2>
+            <div class="dist-form-row">
+                <div class="dist-input-box">
+                    <label>Select Beneficiary</label>
+                    <select id="beneficiary">
+                        <option value="">Choose beneficiary</option>
+                    </select>
+                </div>
+                <div class="dist-input-box">
+                    <label>Select Resource</label>
+                    <select id="resource">
+                        <option value="">Choose resource</option>
+                        <option>Food Package</option>
+                        <option>Hygiene Kit</option>
+                        <option>Blanket</option>
+                        <option>Water Bottle</option>
+                    </select>
+                </div>
+                <div class="dist-input-box">
+                    <label>Quantity</label>
+                    <input type="number" id="quantity" placeholder="Enter quantity">
+                </div>
+                <div class="dist-input-box">
+                    <label>Date</label>
+                    <input type="date" id="date">
+                </div>
+                <button class="btn-primary dist-btn" onclick="addDistribution()">
+                    <i class="fa-solid fa-paper-plane"></i> Distribute
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="content-card">
+            <div class="content-card-header">
+                <h2>All Distributions</h2>
+                <input type="text" id="search" class="search-input" placeholder="Search distributions..." onkeyup="searchDistribution()">
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Beneficiary</th>
+                            <th>Resource</th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/distribution.js"></script>
+</body>
+</html>

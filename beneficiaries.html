@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>if(!sessionStorage.getItem("currentUser")){window.location.replace("index.html");}</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Humanitarian aid, Beneficiary management, Web Applications, Aid Distribution">   
+    <title>H-AID | Beneficiaries</title>
+    <link rel="stylesheet" href="css/all_min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/beneficiaries.css">
+</head>
+<body>
+<div class="page-wrapper">
+
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="images/logo.png" alt="H-AID Logo">
+            <div class="logo-text">
+                <h1>H-AID</h1>
+                <p>Humanitarian Aid<br>Distribution System</p>
+            </div>
+        </div>
+        <div class="navbar">
+            <nav class="menu">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </a>
+                <a href="resources.html" class="nav-link">
+                    <i class="fa-solid fa-box-archive"></i> Resources
+                </a>
+                <a href="beneficiaries.html" class="nav-link active">
+                    <i class="fa-solid fa-users"></i> Beneficiaries
+                </a>
+                <a href="distribution.html" class="nav-link">
+                    <i class="fa-solid fa-truck"></i> Distribution
+                </a>
+                <a href="reports.html" class="nav-link">
+                    <i class="fa-solid fa-chart-column"></i> Reports
+                </a>
+                <a href="setting.html" class="nav-link">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+            </nav>
+        </div>
+        <div class="logout" onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Log Out</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Beneficiaries</h1>
+            <p>Manage and view all registered beneficiaries.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Beneficiaries</h4>
+                        <h2 id="total">0</h2>
+                        <p>Registered individuals</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="#" class="blue">View Details</a>
+                    <i class="fa-solid fa-chevron-right blue"></i>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon green"><i class="fa-solid fa-user-check"></i></div>
+                    <div class="stat-info">
+                        <h4>Active Beneficiaries</h4>
+                        <h2 id="active">0</h2>
+                        <p>Currently eligible</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="#" class="green">View Details</a>
+                    <i class="fa-solid fa-chevron-right green"></i>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon orange"><i class="fa-solid fa-star"></i></div>
+                    <div class="stat-info">
+                        <h4>High Priority</h4>
+                        <h2 id="high">0</h2>
+                        <p>Urgent cases</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="#" class="orange">View Details</a>
+                    <i class="fa-solid fa-chevron-right orange"></i>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-body">
+                    <div class="stat-icon purple"><i class="fa-solid fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h4>Pending Cases</h4>
+                        <h2 id="pending">0</h2>
+                        <p>Need review</p>
+                    </div>
+                </div>
+                <div class="stat-card-footer">
+                    <a href="#" class="purple">View Details</a>
+                    <i class="fa-solid fa-chevron-right purple"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="content-card">
+            <div class="content-card-header">
+                <h2>All Beneficiaries</h2>
+                <div style="display:flex;gap:10px;align-items:center;">
+                    <input type="text" id="search" class="search-input" placeholder="Search beneficiaries..." onkeyup="searchBeneficiary()">
+                    <button class="btn-primary" onclick="openModal()">
+                        <i class="fa-solid fa-plus"></i> Add Beneficiary
+                    </button>
+                </div>
+            </div>
+            <div style="overflow-x:auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Full Name</th>
+                            <th>National ID</th>
+                            <th>Family Members</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal">
+    <div class="modal-box">
+        <h3 id="modal-title">Add Beneficiary</h3>
+        <div class="form-group">
+            <label>Full Name</label>
+            <input id="name" type="text" placeholder="Enter full name">
+        </div>
+        <div class="form-group">
+            <label>National ID</label>
+            <input id="nid" type="number" placeholder="Enter 9-digit National ID">
+        </div>
+        <div class="form-group">
+            <label>Family Members</label>
+            <input id="family" type="number" placeholder="Number of family members">
+        </div>
+        <div class="form-group">
+            <label>Priority</label>
+            <select id="priority">
+                <option value="" disabled selected>Select Priority</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Status</label>
+            <select id="status">
+                <option value="" disabled selected>Select Status</option>
+                <option value="Active">Active</option>
+                <option value="Pending">Pending</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn-primary" onclick="addBeneficiary()">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/beneficiaries.js"></script>
+</body>
+</html>

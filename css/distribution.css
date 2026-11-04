@@ -1,0 +1,46 @@
+/* Distribution page - specific styles */
+
+.dist-form-row {
+    display: flex;
+    gap: 14px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.dist-input-box {
+    flex: 1;
+    min-width: 150px;
+}
+
+.dist-input-box label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.dist-input-box input,
+.dist-input-box select {
+    width: 100%;
+    height: 44px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    background: white;
+    color: #374151;
+}
+
+.dist-input-box input:focus,
+.dist-input-box select:focus {
+    border-color: #2563eb;
+}
+
+.dist-btn {
+    height: 44px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
